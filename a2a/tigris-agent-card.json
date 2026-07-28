@@ -1,0 +1,15 @@
+{
+  "name": "Tigris Object Storage",
+  "description": "Globally distributed, S3-compatible object storage with no egress fees.",
+  "url": "https://www.tigrisdata.com",
+  "capabilities": {
+    "mcp_server": "https://mcp.storage.dev/mcp",
+    "agent_plugins": "https://github.com/tigrisdata/tigris-agents-plugins",
+    "llms_txt": "https://www.tigrisdata.com/llms.txt",
+    "docs_llms_txt": "https://www.tigrisdata.com/docs/llms.txt",
+    "docs_llms_full_txt": "https://www.tigrisdata.com/docs/llms-full.txt",
+    "content_negotiation": true
+  },
+  "documentation_url": "https://www.tigrisdata.com/docs/",
+  "contact": "help@tigrisdata.com"
+}

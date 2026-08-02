@@ -1,0 +1,62 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.tigrisdata.com/docs/sdks/tigris/ + https://github.com/tigrisdata + https://www.tigrisdata.com/llms.txt
+packages:
+- language: javascript
+  registry: npm
+  name: "@tigrisdata/storage"
+  url: https://www.npmjs.com/package/@tigrisdata/storage
+  install: npm i @tigrisdata/storage
+  official: true
+  description: Native Tigris TypeScript/JavaScript client with a simple interface over the S3-compatible storage API.
+  source: https://github.com/tigrisdata/storage
+- language: javascript
+  registry: npm
+  name: "@tigrisdata/cli"
+  url: https://www.npmjs.com/package/@tigrisdata/cli
+  install: npm i -g @tigrisdata/cli
+  official: true
+  description: Tigris command-line interface (tigris login / bucket / object operations).
+  source: https://github.com/tigrisdata/cli
+- language: javascript
+  registry: npm
+  name: "@tigrisdata/agent-kit"
+  url: https://www.npmjs.com/package/@tigrisdata/agent-kit
+  install: npm i @tigrisdata/agent-kit
+  official: true
+  description: Agent toolkit for copy-on-write forks, workspaces, checkpoints, and coordination on Tigris buckets.
+  source: https://github.com/tigrisdata/storage/tree/main/packages/agent-kit
+- language: go
+  registry: pkg.go.dev
+  name: github.com/tigrisdata/storage-go
+  url: https://pkg.go.dev/github.com/tigrisdata/storage-go
+  install: go get github.com/tigrisdata/storage-go
+  official: true
+  description: Tigris Storage SDK for Go — S3-compatible client plus Tigris features (forks, snapshots, object rename).
+  source: https://github.com/tigrisdata/storage-go
+- language: python
+  registry: github
+  name: tigris-boto3-ext
+  url: https://github.com/tigrisdata/tigris-boto3-ext
+  install: pip install git+https://github.com/tigrisdata/tigris-boto3-ext
+  official: true
+  description: Extends boto3 with Tigris-specific features for the S3-compatible endpoint.
+  source: https://github.com/tigrisdata/tigris-boto3-ext
+- language: hcl
+  registry: terraform
+  name: tigrisdata/tigris
+  url: https://registry.terraform.io/providers/tigrisdata/tigris
+  install: terraform { required_providers { tigris = { source = "tigrisdata/tigris" } } }
+  official: true
+  description: Terraform provider for managing Tigris buckets and access keys.
+  source: https://github.com/tigrisdata/terraform-provider-tigris
+- language: shell
+  registry: homebrew
+  name: tigrisdata/tap
+  url: https://github.com/tigrisdata/homebrew-tap
+  install: brew install tigrisdata/tap/tigris
+  official: true
+  description: Homebrew tap distributing the Tigris CLI binary.
+  source: https://github.com/tigrisdata/homebrew-tap
+notes:
+- Tigris speaks the AWS S3 API natively, so standard S3 SDKs (aws-sdk-js @aws-sdk/client-s3, boto3, AWS SDK for Go, aws-cli, rclone) also work by setting the endpoint to https://t3.storage.dev.

@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.tigrisdata.com/docs/cli/ + https://github.com/tigrisdata/cli
+name: tigris
+description: First-party command-line interface for Tigris object storage.
+repo: https://github.com/tigrisdata/cli
+docs: https://www.tigrisdata.com/docs/cli/
+install:
+- method: npm
+  command: npm i -g @tigrisdata/cli
+- method: homebrew
+  command: brew install tigrisdata/tap/tigris
+auth:
+  command: tigris login
+  description: Authenticates the CLI against your Tigris account (console.storage.dev).
+command_groups:
+- group: bucket-operations
+  docs: https://www.tigrisdata.com/docs/cli/bucket-operations/
+  description: Create, list, and configure buckets.
+- group: object-operations
+  docs: https://www.tigrisdata.com/docs/cli/object-operations/
+  description: Upload, download, copy, and delete objects.
+notes:
+- Standard AWS tooling also works against Tigris (aws s3 / aws s3api with --endpoint-url https://t3.storage.dev, and rclone).

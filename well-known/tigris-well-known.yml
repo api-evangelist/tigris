@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: probed
+source: live probes of Tigris hosts
+note: >-
+  No .well-known discovery documents returned 200 at time of enrichment. Recorded
+  for auditability; no WellKnown/SecurityTxt scored pointer is emitted (absence is
+  valid data).
+hosts:
+- host: https://www.tigrisdata.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://t3.storage.dev
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://console.storage.dev
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://iam.storage.dev
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 405

@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.tigrisdata.com/docs/api/s3/
+summary: >-
+  Tigris conforms to the AWS S3 REST API. Its published compatibility suite
+  reports 61 of 68 operations passing (~90%), higher than Cloudflare R2 (71%)
+  and Google Cloud Storage (66%) on the same TypeScript runner.
+standards:
+- id: aws-s3-api
+  conforms: true
+  coverage: '90% (61/68 operations in Tigris compatibility suite)'
+  evidence: 'Documented S3 API compatibility matrix; works with AWS S3 SDKs, aws-cli, boto3, rclone.'
+  source: https://www.tigrisdata.com/docs/api/s3/
+- id: aws-signature-v4
+  conforms: true
+  evidence: 'Requests authenticated with AWS Signature Version 4 access keys.'
+- id: rfc7232-conditional-requests
+  conforms: true
+  evidence: 'Supports If-Match / If-None-Match / If-Modified-Since / If-Unmodified-Since on object operations.'
+  source: https://www.tigrisdata.com/docs/objects/conditionals/
+- id: s3-bucket-notifications
+  conforms: partial
+  evidence: 'GetBucketNotificationConfiguration is supported in the compatibility matrix.'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'S3-style XML error envelope, not application/problem+json.'
+notes:
+- 'Unsupported/partial S3 operations in the published matrix include GetBucketPolicy, GetBucketVersioning, and bucket encryption get/delete (partial).'

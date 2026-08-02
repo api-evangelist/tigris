@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.tigrisdata.com/docs/api/s3/ + https://www.tigrisdata.com/docs/objects/conditionals/ + https://www.tigrisdata.com/docs/objects/query-metadata/
+summary: >-
+  Tigris follows AWS S3 request/response conventions (it fulfills >90% of the S3
+  API), plus Tigris-specific extensions for forks, snapshots, rename, and
+  conditional operations.
+authentication:
+  style: AWS Signature Version 4
+  credential: S3 access key ID + secret access key
+  endpoint: https://t3.storage.dev
+  region: auto
+  ref: authentication/tigris-authentication.yml
+idempotency:
+  supported: true
+  mechanism: HTTP conditional requests + idempotent object PUT
+  description: >-
+    Object PUT is idempotent by key — writing the same object to the same key
+    yields the same result. Tigris documents conditional operations for safe,
+    idempotent writes and optimistic concurrency: `If-None-Match: "*"` performs
+    a create-only (write-if-absent) so a retried create does not overwrite, and
+    `If-Match: <etag>` performs an update-only if the current version matches.
+  headers: ['If-None-Match', 'If-Match', 'If-Modified-Since', 'If-Unmodified-Since']
+  docs: https://www.tigrisdata.com/docs/objects/conditionals/
+pagination:
+  style: cursor
+  operation: ListObjectsV2
+  request_params: ['max-keys', 'continuation-token', 'prefix', 'delimiter', 'start-after']
+  response_fields: ['IsTruncated', 'NextContinuationToken', 'KeyCount']
+  docs: https://www.tigrisdata.com/docs/api/s3/
+metadata:
+  custom_metadata: 'x-amz-meta-* headers on PutObject (custom metadata supported)'
+  query_metadata: Tigris supports querying object metadata
+  docs: https://www.tigrisdata.com/docs/objects/query-metadata/
+error_envelope:
+  format: S3 XML error response
+  shape: '<Error><Code>...</Code><Message>...</Message><RequestId>...</RequestId></Error>'
+  ref: errors/tigris-error-codes.yml
+versioning:
+  api_style: unversioned S3-compatible endpoint (single global endpoint)
+  ref: lifecycle/tigris-lifecycle.yml
+regions:
+  model: Single global endpoint with automatic global replication and caching; region "auto".
+  fly_endpoint: fly.storage.tigris.dev (zero-rated egress from fly.io deployments)
+  docs: https://www.tigrisdata.com/docs/concepts/regions/
+tigris_extensions:
+- Bucket forks (copy-on-write clones) — https://www.tigrisdata.com/docs/buckets/forks/
+- Bucket snapshots (point-in-time) — https://www.tigrisdata.com/docs/buckets/snapshots/
+- In-place object rename (no data copy) — https://www.tigrisdata.com/docs/objects/object-rename/
+- Shadow-bucket migration from AWS S3 — https://www.tigrisdata.com/docs/migration/

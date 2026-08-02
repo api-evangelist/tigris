@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.tigrisdata.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 15 19:02:15 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: t3.storage.dev
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 19:20:01 2026 GMT
+  hsts: null
+domains:
+- domain: tigrisdata.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: storage.dev
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false

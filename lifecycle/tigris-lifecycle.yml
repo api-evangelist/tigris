@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://status.tigrisdata.com/ + https://www.tigrisdata.com/docs/
+versioning:
+  scheme: unversioned
+  model: >-
+    Single global S3-compatible endpoint (https://t3.storage.dev). The S3 API is
+    not path-versioned; behavior follows AWS S3 semantics with Tigris extensions
+    added compatibly.
+availability:
+  target: '99.99%'
+  source: https://www.tigrisdata.com/ (stated 99.99% availability)
+status_page: https://status.tigrisdata.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/Sunset-header policy located in public docs at time of enrichment.
+deprecated_operations: []
+notes:
+- The llms.txt notes historical "database / unified data platform" experiments are deprecated; the current product is object storage only.

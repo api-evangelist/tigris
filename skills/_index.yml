@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: generated
+source: >-
+  Grounded in Tigris' documented S3-compatible operations
+  (https://www.tigrisdata.com/docs/api/s3/) and the storage-go / agent-kit SDKs.
+  Tigris also publishes its own agent skills at https://github.com/tigrisdata/skills
+  and https://skills.sh/tigrisdata/skills.
+provider_published_skills:
+  repo: https://github.com/tigrisdata/skills
+  catalog: https://skills.sh/tigrisdata/skills
+skills:
+- file: tigris-upload-and-serve.md
+  name: Upload and serve objects on Tigris
+  api: S3-compatible (https://t3.storage.dev)
+  operations: [CreateBucket, PutObject, GetObject, ListObjectsV2, DeleteObject]
+- file: tigris-fork-for-agents.md
+  name: Fork a dataset per agent with copy-on-write buckets
+  api: Tigris agent-kit / storage-go (forks + snapshots)
+  operations: [CreateSnapshotEnabledBucket, CreateBucketSnapshot, CreateBucketFork, ListBucketSnapshots, DeleteBucket]

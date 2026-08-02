@@ -1,0 +1,71 @@
+generated: '2026-07-21'
+method: derived
+source: https://www.tigrisdata.com/docs/api/s3/ (S3-compatible API; standard AWS S3 REST error codes)
+format: s3-xml
+envelope:
+  content_type: application/xml
+  shape: '<Error><Code>{Code}</Code><Message>{Message}</Message><Resource>{Resource}</Resource><RequestId>{RequestId}</RequestId></Error>'
+note: >-
+  Tigris speaks the AWS S3 API, so it returns the standard S3 REST error codes
+  as an XML error document with the HTTP status shown. This catalog lists the
+  common S3 error codes an S3-compatible store returns; it is derived from
+  Tigris' documented S3 compatibility, not a Tigris-specific error registry.
+errors:
+- code: NoSuchBucket
+  status: 404
+  message: The specified bucket does not exist.
+- code: NoSuchKey
+  status: 404
+  message: The specified key does not exist.
+- code: NoSuchUpload
+  status: 404
+  message: The specified multipart upload does not exist.
+- code: BucketAlreadyExists
+  status: 409
+  message: The requested bucket name is not available.
+- code: BucketAlreadyOwnedByYou
+  status: 409
+  message: The bucket you tried to create already exists and you own it.
+- code: BucketNotEmpty
+  status: 409
+  message: The bucket you tried to delete is not empty.
+- code: AccessDenied
+  status: 403
+  message: Access denied.
+- code: SignatureDoesNotMatch
+  status: 403
+  message: The request signature computed does not match the signature provided.
+- code: InvalidAccessKeyId
+  status: 403
+  message: The AWS access key ID does not exist in our records.
+- code: PreconditionFailed
+  status: 412
+  message: At least one of the preconditions (If-Match / If-None-Match / If-Unmodified-Since) you specified did not hold.
+  remediation: Re-read the current ETag/object and retry the conditional operation.
+- code: NotModified
+  status: 304
+  message: The resource has not been modified (If-Modified-Since / If-None-Match).
+- code: InvalidBucketName
+  status: 400
+  message: The specified bucket is not valid.
+- code: InvalidArgument
+  status: 400
+  message: Invalid argument in the request.
+- code: EntityTooLarge
+  status: 400
+  message: The upload exceeds the maximum allowed object size.
+- code: MissingContentLength
+  status: 411
+  message: You must provide the Content-Length HTTP header.
+- code: RequestTimeout
+  status: 400
+  message: Your socket connection to the server was not read from or written to within the timeout period.
+- code: SlowDown
+  status: 503
+  message: Reduce your request rate.
+- code: ServiceUnavailable
+  status: 503
+  message: Service is unable to handle the request; retry.
+- code: InternalError
+  status: 500
+  message: An internal error occurred; retry the request.

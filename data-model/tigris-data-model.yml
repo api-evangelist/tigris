@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: derived
+source: https://www.tigrisdata.com/docs/ (buckets, objects, forks, snapshots, IAM)
+entities:
+- name: Bucket
+  description: A globally distributed container for objects. Can be snapshot-enabled and forked.
+  key: bucket name
+  docs: https://www.tigrisdata.com/docs/buckets/
+- name: Object
+  description: A stored blob (up to 5 TB) identified by key within a bucket, with custom metadata and ETag.
+  key: object key
+  docs: https://www.tigrisdata.com/docs/objects/
+- name: Snapshot
+  description: A point-in-time copy of a snapshot-enabled bucket.
+  docs: https://www.tigrisdata.com/docs/buckets/snapshots/
+- name: Fork
+  description: A copy-on-write clone of a bucket (its own bucket) branched from a source snapshot.
+  docs: https://www.tigrisdata.com/docs/buckets/forks/
+- name: AccessKey
+  description: An S3 access key ID / secret pair, scoped to a role and optionally to buckets.
+  docs: https://www.tigrisdata.com/docs/iam/
+- name: Role
+  description: An IAM role (e.g. Editor, ReadOnly) that scopes an access key's permissions.
+  docs: https://www.tigrisdata.com/docs/iam/
+- name: Policy
+  description: A bucket policy governing access.
+  docs: https://www.tigrisdata.com/docs/iam/
+relationships:
+- from: Object
+  to: Bucket
+  type: belongs_to
+  via: bucket
+- from: Bucket
+  to: Object
+  type: has_many
+  via: bucket
+- from: Snapshot
+  to: Bucket
+  type: belongs_to
+  via: source bucket
+- from: Fork
+  to: Bucket
+  type: belongs_to
+  via: source bucket (SourceBucket)
+- from: Fork
+  to: Snapshot
+  type: belongs_to
+  via: source snapshot (SourceBucketSnapshot)
+- from: AccessKey
+  to: Role
+  type: belongs_to
+  via: role
+- from: Bucket
+  to: Policy
+  type: has_many
+  via: bucket policy

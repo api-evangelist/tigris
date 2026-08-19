@@ -5,12 +5,14 @@ source: https://www.tigrisdata.com/docs/mcp/remote/ + https://github.com/tigrisd
 servers:
 - name: tigris-remote
   transport: http
-  description: HTTP streaming remote MCP server for Tigris — connect Claude, Cursor, and other MCP-compatible clients.
+  description: HTTP streaming remote MCP server for Tigris — connect Claude, Cursor, and other MCP-compatible
+    clients.
   url: https://mcp.storage.dev/mcp
   docs: https://www.tigrisdata.com/docs/mcp/remote/
 - name: tigris-mcp-server
   transport: stdio
-  description: Local/self-hosted Tigris MCP server implementing bucket and object management tools over the S3-compatible API.
+  description: Local/self-hosted Tigris MCP server implementing bucket and object management tools over
+    the S3-compatible API.
   install: npx -y @tigrisdata/mcp-server
   repo: https://github.com/tigrisdata/tigris-mcp-server
 capabilities:
@@ -18,4 +20,12 @@ capabilities:
 - Object management (upload, download, list, delete objects)
 - Access-key and credential management
 notes:
-- Tigris also publishes a registry entry via github.com/tigrisdata/mcp-registry (Docker MCP registry) and an mcp-oidc-provider for auth between MCP clients and upstream IdPs.
+- Tigris also publishes a registry entry via github.com/tigrisdata/mcp-registry (Docker MCP registry)
+  and an mcp-oidc-provider for auth between MCP clients and upstream IdPs.
+deployment:
+  mode: remote
+  endpoint: https://mcp.storage.dev/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

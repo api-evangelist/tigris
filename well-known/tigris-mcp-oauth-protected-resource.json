@@ -1,0 +1,1 @@
+{"resource":"https://mcp.storage.dev/mcp","authorization_servers":["https://mcp.storage.dev"],"bearer_methods_supported":["header"],"resource_signing_alg_values_supported":["RS256"],"scopes_supported":["openid","email","profile","offline_access"]}
